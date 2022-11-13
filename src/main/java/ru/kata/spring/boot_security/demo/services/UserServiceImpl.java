@@ -81,11 +81,14 @@ public class UserServiceImpl implements UserService{
 
         userFromDB.setUsername(updatedUser.getUsername());
         userFromDB.setSocialCredit(updatedUser.getSocialCredit());
-        userFromDB.setRoles(updatedUser.getRoles());
+
+        Set<Role> updRoles = updatedUser.getRoles();
+        if(updRoles!=null) {
+            userFromDB.setRoles(updatedUser.getRoles());
+        }
 
         String passwordUpdUser = updatedUser.getPassword();
         String passwordFromDB = userFromDB.getPassword();
-
         if(!passwordUpdUser.equals(passwordFromDB)) {
             userFromDB.setPassword(passwordEncoder.encode(passwordUpdUser));
         }

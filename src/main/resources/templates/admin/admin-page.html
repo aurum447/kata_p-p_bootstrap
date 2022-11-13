@@ -56,6 +56,7 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>Role</th>
+                    <th>Social credit</th>
                     <th>Edit</th>
                     <th>Delete</th>
                   </tr>
@@ -63,6 +64,7 @@
                     <td th:text="${user.id}">id</td>
                     <td th:text="${user.username}">username</td>
                     <td th:text="${user.roles}">roles</td>
+                    <td th:text="${user.socialCredit}">socialCredit</td>
                     <td>
                       <a type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                          data-bs-target="#editModal"
@@ -103,12 +105,19 @@
                                      th:value="${user.password}"/>
                               <br>
 
-                              <label for="roles">Roles</label>
-                              <select multiple="multiple" th:value="${user.roles}"
-                                      type="text" id="roles" name="roles">
-                                <option th:each="role : ${allRoles}" th:value="${role.getId()}" th:text="${role.getTitle()}"></option>
-                              </select>
+                              <label for="socialCredit"><b>Social credit</b></label>
+                              <input th:name="socialCredit" th:type="number"
+                                     class="form-control" id="socialCredit"
+                                     th:value="${user.socialCredit}"/>
+                              <br>
 
+                              <label for="roles">Roles</label>
+                              <select multiple="multiple" th:value="*{roles}"
+                                      type="text" id="roles" name="roles">
+                                <option th:each="role : ${allRoles}"
+                                        th:value="${role.getId()}" th:text="${role.getTitle()}">
+                                </option>
+                              </select>
 
                               <br><br>
                             </div>

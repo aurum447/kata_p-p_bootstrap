@@ -45,23 +45,33 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 border">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-center">
                 <form th:method="POST" th:action="@{/admin/create}" th:object="${user}">
+
                     <div class="mb-3 ">
                         <label for="exampleInputEmail1" class="form-label fw-bolder">Username</label>
-                        <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1">
+                    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
                     </div>
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label fw-bolder">Password</label>
                         <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1">
                     </div>
+
+                    <div class="mb-3 ">
+                        <label for="socialCredit" class="form-label fw-bolder">Social credit</label>
+                        <input type="text" th:field="*{socialCredit}" class="form-control" id="socialCredit">
+                    </div>
+
                     <div class="mb-3">
                         <label for="role">Role</label>
                         <select multiple="multiple" th:field="*{roles}"
                                 type="text" id="role">
-                            <option th:each="role : ${allRoles}" th:value="${role.getId()}" th:text="${role.getTitle()}"></option>
-
+                            <option th:each="role : ${allRoles}"
+                                    th:value="${role.getId()}" th:text="${role.getTitle()}">
+                            </option>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-success">Add new user</button>
                 </form>
             </div>

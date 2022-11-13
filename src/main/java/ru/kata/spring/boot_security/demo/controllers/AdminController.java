@@ -39,7 +39,7 @@ public class AdminController {
     //  //  //  ////  //  //  ////  //  //  ////  //  //  ////  //  //  ////  //  //  //
 
     @GetMapping("/newUser")
-    public String newUserForm(/*@ModelAttribute("user") User user,*/ Model model, Principal principal ) {
+    public String newUserForm(Model model, Principal principal) {
         model.addAttribute("allRoles", roleService.getRoles());
         model.addAttribute("user", new User());
         model.addAttribute("principal", userService.findUserByUsername(principal.getName()));
@@ -63,23 +63,9 @@ public class AdminController {
 
     //  //  //  ////  //  //  ////  //  //  ////  //  //  ////  //  //  ////  //  //  //
 
-/*    @GetMapping("/updateUser")
-    public String updateUserForm(*//*@PathVariable("id") long id,*//* Model model) {
-        //model.addAttribute("user", userService.findById(id));
-        model.addAttribute("allRoles", roleService.getRoles());
-        return "/admin/admin-page";
-    }
-
-    @PatchMapping("/update/{id}")
-    public String updateUser(@ModelAttribute("user") User user, long id) {
-        userService.update(id, user);
-        return "redirect:/admin";
-    }*/
-
     @PutMapping("/{id}/update")
     public String updateUser(@ModelAttribute("user") User user, Model model,@PathVariable("id") long id) {
         model.addAttribute("allRoles", roleService.getRoles());
-        //getUserRoles(user);
         userService.update(id, user);
         return "redirect:/admin";
     }
